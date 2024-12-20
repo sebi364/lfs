@@ -10,5 +10,4 @@ services:
       - ./tmp/sources:/sources
       - ./tmp/lfs:/lfs
     entrypoint: bash 00_main.sh
-    shm_size: 32G # we building in ram with this one
     privileged: false

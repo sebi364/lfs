@@ -1,0 +1,14 @@
+services:
+  builder:
+    build: ./buildenv/
+    environment:
+      LFS: "/lfs"
+      SOURCES: "/sources"
+      MAKEFLAGS: -j32
+    volumes:
+      - ./buildscripts:/buildscripts
+      - ./tmp/sources:/sources
+      - ./tmp/lfs:/lfs
+    entrypoint: bash 00_main.sh
+    shm_size: 32G # we building in ram with this one
+    privileged: false

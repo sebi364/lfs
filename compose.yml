@@ -9,5 +9,6 @@ services:
       - ./buildscripts:/buildscripts
       - ./tmp/sources:/sources
       - ./tmp/lfs:/lfs
+      - ./tmp/logs:/logs
     entrypoint: bash 00_main.sh
     privileged: false

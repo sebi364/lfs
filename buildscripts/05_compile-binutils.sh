@@ -10,6 +10,7 @@ mkdir -v binutils-2.43.1/build
 cd binutils-2.43.1/build
 
 # configure
+echo "================================================================"
 ../configure --prefix=$LFS/tools \
              --with-sysroot=$LFS \
              --target=$LFS_TGT   \
@@ -20,6 +21,9 @@ cd binutils-2.43.1/build
              --enable-default-hash-style=gnu
 
 # compile package
+echo "================================================================"
 make
+
 # install package
+echo "================================================================"
 make install

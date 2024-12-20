@@ -17,7 +17,16 @@ mv -v gmp-6.3.0 gmp
 tar -xf ../mpc-1.3.1.tar.gz
 mv -v mpc-1.3.1 mpc
 
+# On x86_64 hosts, set the default directory name for 64-bit libraries to “lib”
+case $(uname -m) in
+  x86_64)
+    sed -e '/m64=/s/lib64/lib/' \
+        -i.orig gcc/config/i386/t-linux64
+ ;;
+esac
+
 # configure
+echo "================================================================"
 cd build
 ../configure                  \
     --target=$LFS_TGT         \
@@ -38,9 +47,12 @@ cd build
     --disable-libssp          \
     --disable-libvtv          \
     --disable-libstdcxx       \
-    --enable-languages=c,c++
+    --enable-languages=c,c++  \
+    --disable-bootstrap
 
 # compile package
+echo "================================================================"
 make
 # install package
+echo "================================================================"
 make install
